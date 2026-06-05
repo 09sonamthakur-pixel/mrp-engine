@@ -6,7 +6,6 @@ import com.mrp_engine.repository.BomRepository;
 import com.mrp_engine.repository.InventoryRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,9 +36,9 @@ public class MrpEngineApplication {
         if (children.isEmpty()){
             InventoryStatus inventoryStatus = inventoryRepository.findByItemId(itemId).orElse(null);
 
-            //int stock = inventory == null ? 0 : inventory.getOnHandQuantity();
-           // int netRequired = Math.max(requiredQty - stock,0);
-            //result.put("Item-" + itemId, netRequired);
+            int stock = inventoryStatus == null ? 0 : inventoryStatus.getOnHandQuantity();
+            int netRequired = Math.max(requiredQty - stock,0);
+            result.put("Item-" + itemId, netRequired);
             return;
         }
         for(BomLink child : children){
