@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface InventoryRepository extends JpaRepository<InventoryStatus,Long> {
 
-    Optional<InventoryStatus> findByItemId(Long itemId);
+
 }
